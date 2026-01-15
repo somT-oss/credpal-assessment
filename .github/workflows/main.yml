@@ -7,7 +7,7 @@ on:
     branches: ["main"]
 
 env:
-  S3_BUCKET_NAME: "credpal-deployment-artifacts-PLEASE_UPDATE_ME"
+  S3_BUCKET_NAME: "credpal-deployment-artifacts-64693fcd"
 
 jobs:
   build-and-test:
