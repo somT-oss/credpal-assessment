@@ -64,6 +64,9 @@ jobs:
       - name: Create version file
         run: echo "${{ steps.login-ecr.outputs.registry }}/credpal-assessment:${{ github.sha }}" > image_tag.txt
       
+      - name: Echo image tag
+        run: cat image_tag.txt
+      
       - name: Upload Artifacts for Deployment
         uses: actions/upload-artifact@v4
         with:
