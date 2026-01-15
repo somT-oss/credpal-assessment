@@ -6,8 +6,8 @@ services:
     ports:
       - "3000:3000"
     environment:
-      - PORT=3000
-      - DATABASE_URL=postgresql://postgres:postgres@db:5432/credpal
+      - PORT=${PORT:-3000}
+      - DATABASE_URL=postgresql://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD:-postgres}@db:5432/${POSTGRES_DB:-credpal}
     depends_on:
       - db
     networks:
@@ -16,9 +16,9 @@ services:
   db:
     image: postgres:15-alpine
     environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=credpal
+      - POSTGRES_USER=${POSTGRES_USER:-postgres}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-postgres}
+      - POSTGRES_DB=${POSTGRES_DB:-credpal}
     ports:
       - "5432:5432"
     networks:
