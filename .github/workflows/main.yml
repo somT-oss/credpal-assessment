@@ -63,6 +63,15 @@ jobs:
 
       - name: Create version file
         run: echo "${{ steps.login-ecr.outputs.registry }}/credpal-assessment:${{ github.sha }}" > image_tag.txt
+      
+      - name: Upload Artifacts for Deployment
+        uses: actions/upload-artifact@v3
+        with:
+          name: deploy-artifacts
+          path: |
+            appspec.yml
+            scripts/
+            image_tag.txt
 
   deploy:
     needs: docker-build-push
@@ -73,6 +82,11 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+
+      - name: Download Artifacts
+        uses: actions/download-artifact@v5
+        with:
+          name: deploy-artifacts
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v2
