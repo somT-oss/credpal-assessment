@@ -1,5 +1,8 @@
 #!/bin/bash
 
+pwd
+ls -la /home/ec2-user
+ls -la /home/ec2-user/scripts
 
 IMAGE=$(cat image_tag.txt)
 echo "Found image >>> "
